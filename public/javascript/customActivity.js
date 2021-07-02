@@ -117,6 +117,7 @@ function save() {
                 id: $(this).attr('id'),
                 value: $(this).val()
             };
+            
 
             $.each(payload['arguments'].execute.inArguments, function(index, value) {
                 if($el.attr('type') === 'checkbox') {
@@ -131,6 +132,8 @@ function save() {
             })
         });
 
+        console.log("payload");
+        console.log(JSON.stringify(payload));
         connection.trigger('updateActivity', payload);
     }
 }
