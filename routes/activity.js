@@ -13,26 +13,8 @@ exports.execute = async (req, res) => {
   // decode data
   const data = JWT(req.body);
 
+  logger.info("dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
   logger.info(data);
-
-  try {
-    const id = Uuidv1();
-
-    await SFClient.saveData(process.env.DATA_EXTENSION_EXTERNAL_KEY, [
-      {
-        keys: {
-          Id: id,
-          SubscriberKey: data.inArguments[0].contactKey,
-        },
-        values: {
-          Event: data.inArguments[0].DropdownOptions,
-          Text: data.inArguments[0].Text,
-        },
-      },
-    ]);
-  } catch (error) {
-    logger.error(error);
-  }
 
   res.status(200).send({
     status: 'ok',
